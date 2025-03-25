@@ -1,0 +1,21 @@
+.Screen {
+  /* sizing */
+  min-height: 20%;
+  padding: 1rem 1.5rem;
+  /* display */
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: end;
+  /* styling */
+  border: 1px solid;
+  border-radius: 2rem;
+}
+
+.calculation {
+  font-size: 1.1rem;
+}
+
+.result {
+  font-size: 5rem;
+}

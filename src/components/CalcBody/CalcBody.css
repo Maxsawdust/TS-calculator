@@ -1,0 +1,9 @@
+.CalcBody {
+  /* sizing */
+  width: 40rem;
+  height: 50rem;
+  padding: 2rem;
+  border-radius: 3rem;
+  background-color: white;
+  box-shadow: 0 0 1rem white;
+}
