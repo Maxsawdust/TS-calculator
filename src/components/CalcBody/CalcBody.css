@@ -2,8 +2,12 @@
   /* sizing */
   width: 40rem;
   height: 50rem;
-  padding: 2rem;
+  padding: 1rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
   border-radius: 3rem;
-  background-color: white;
+  background-color: black;
   box-shadow: 0 0 1rem white;
 }

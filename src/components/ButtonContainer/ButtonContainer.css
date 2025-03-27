@@ -1,0 +1,9 @@
+.ButtonContainer {
+  /* sizing */
+  width: 100%;
+  flex: 1;
+  /* display */
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr 1fr;
+  gap: 0.1rem;
+}

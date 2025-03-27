@@ -9,9 +9,10 @@
 
 .App {
   height: 100vh;
+  background-color: #9a9a9a;
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  background-color: #9a9a9a;
+  color: white;
 }

@@ -1,0 +1,15 @@
+.CalculatorButton {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: #676767;
+}
+
+/* specific border-radii */
+.CalculatorButton:nth-child(17) {
+  border-radius: 0 0 0 2rem;
+}
+
+.CalculatorButton:nth-child(19) {
+  border-radius: 0 0 2rem 0;
+}
