@@ -1,8 +1,21 @@
 .CalculatorButton {
+  font-size: 2.5rem;
+  /* display */
   display: flex;
   justify-content: center;
   align-items: center;
+  /* styling */
   background-color: #676767;
+  border: none;
+  cursor: pointer;
+}
+
+.CalculatorButton:hover {
+  opacity: 0.9;
+}
+
+.CalculatorButton:active {
+  font-size: 2.4rem;
 }
 
 /* specific border-radii */
