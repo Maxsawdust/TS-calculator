@@ -1,4 +1,4 @@
-import { createContext, useReducer } from "react";
+import { createContext, ReactNode, useReducer, Dispatch } from "react";
 import { displayReducer } from "../reducers/displayReducer";
 import { ActionType } from "../reducers/displayReducer";
 
@@ -16,15 +16,15 @@ const initialState: DisplayState = {
 
 interface DisplayContextType {
   state: DisplayState;
-  dispatch: React.ActionDispatch<[action: ActionType]>;
+  dispatch: Dispatch<ActionType>;
 }
 
-const DisplayContext = createContext<DisplayContextType>({
+export const DisplayContext = createContext<DisplayContextType>({
   state: initialState,
   dispatch: () => {},
 });
 
-export default function DisplayProvider({ children }: React.ReactElement) {
+export default function DisplayProvider({ children }: { children: ReactNode }) {
   const [state, dispatch] = useReducer(displayReducer, initialState);
 
   return (

@@ -1,13 +1,13 @@
 import "./App.css";
 import { CalcBody } from "./components";
-import AppProvider from "./store/context/displayContext";
+import DisplayProvider from "./store/context/displayContext";
 
 function App() {
   return (
     <div className="App">
-      <AppProvider>
+      <DisplayProvider>
         <CalcBody />
-      </AppProvider>
+      </DisplayProvider>
     </div>
   );
 }

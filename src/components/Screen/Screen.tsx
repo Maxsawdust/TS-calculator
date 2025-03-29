@@ -1,19 +1,15 @@
 import { useContext } from "react";
 import "./Screen.css";
-import {
-  CalculationContext,
-  ResultContext,
-} from "../../store/context/displayContext";
+import { DisplayContext } from "../../store/context/displayContext";
 
 export default function Screen() {
-  const { resultDisplay } = useContext(ResultContext);
-  const { calculationDisplay } = useContext(CalculationContext);
+  const { state } = useContext(DisplayContext);
 
   return (
     <div className="Screen">
-      <div className="calculation">{calculationDisplay}</div>
+      <div className="calculation">{state.calculationDisplay}</div>
 
-      <div className="result">{resultDisplay}</div>
+      <div className="result">{state.resultDisplay}</div>
     </div>
   );
 }

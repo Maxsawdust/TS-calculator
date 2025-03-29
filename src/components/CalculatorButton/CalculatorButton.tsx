@@ -1,11 +1,8 @@
 import "./CalculatorButton.css";
 import { ButtonContentTypes } from "../ButtonContainer/ButtonContainer";
 import { useContext } from "react";
-import {
-  CalculationContext,
-  EqualsContext,
-  ResultContext,
-} from "../../store/context/displayContext";
+import { DisplayContext } from "../../store/context/displayContext";
+import { ACTIONS } from "../../store/actions/actions";
 
 export default function CalculatorButton({
   content,
@@ -19,29 +16,13 @@ export default function CalculatorButton({
     orange: "orange",
   };
 
-  // accessing result display from context
-  const { resultDisplay, setResultDisplay } = useContext(ResultContext);
-  // accessing calculationDisplay from context
-  const { calculationDisplay, setCalculationDisplay } =
-    useContext(CalculationContext);
-  // accessing boolean equals value
-  const { equalsPressed, setEqualsPressed } = useContext(EqualsContext);
+  // accessing reducer from context
+  const { state, dispatch } = useContext(DisplayContext);
 
   const handleClick = () => {
     // handling behaviour for number buttons
     if (type === "number") {
-      if (equalsPressed) {
-        setResultDisplay(content);
-        setEqualsPressed(false);
-        return;
-      }
-
-      // resetting the initial value of 0 unless the user clicks "."
-      if (resultDisplay === "0" && content !== ".") setResultDisplay("");
-      // making sure the display cannot have more than 10 characters
-      if (resultDisplay.length === 10) return;
-      // adding the clicked button's string to the value
-      setResultDisplay((prev) => prev + content);
+      dispatch({ type: ACTIONS.UPDATE_RESULT, payload: content });
     }
 
     // handling behaviour for modifier buttons
@@ -50,64 +31,35 @@ export default function CalculatorButton({
       switch (content) {
         // clear all
         case "C":
-          setResultDisplay("0");
-          setCalculationDisplay(null);
+          dispatch({ type: ACTIONS.CLEAR_ALL });
           break;
         // clear the entry
         case "CE":
-          setResultDisplay("0");
+          dispatch({ type: ACTIONS.CLEAR_ENTRY });
           break;
         // switch polarity
         case "±":
-          if (resultDisplay !== "0") {
-            if (resultDisplay.charAt(0) === "-") {
-              setResultDisplay((prev) => prev.slice(1));
-            } else {
-              setResultDisplay((prev) => "-" + prev);
-            }
-          }
+          dispatch({ type: ACTIONS.SWITCH_POLARITY });
           break;
       }
     }
     // handling behaviour for operator buttons
     else {
+      // if equals is pressed then do the calculation
       if (content === "=") {
-        // update boolean state
-        setEqualsPressed(true);
-        // do the calculation
-        const result = doCalculation();
-        // display result of calculation
-        setResultDisplay(result);
-        // display the calculation done in calculationDisplay
-        updateDisplay();
-      } else {
-        // set the calculation display to the result display + the operator
-        updateDisplay();
-        // clear result display
-        setResultDisplay("0");
+        // update the calculation display to reflect the operator pressed
+        dispatch({ type: ACTIONS.UPDATE_CALCULATION, payload: content });
+        // do calculation
+        dispatch({ type: ACTIONS.DO_CALCULATION });
+        return;
       }
+      // set the last operator pressed
+      dispatch({ type: ACTIONS.UPDATE_OPERATOR, payload: content });
+      // update the calculation display to reflect the operator pressed
+      dispatch({ type: ACTIONS.UPDATE_CALCULATION, payload: content });
+      // clear the result display
+      dispatch({ type: ACTIONS.CLEAR_ENTRY });
     }
-  };
-
-  const doCalculation = () => {
-    // if calculationDisplay is null then the user has pressed n =, and the result should be n
-    if (calculationDisplay === null) {
-      return resultDisplay;
-    }
-    return "poo";
-
-    // if it's not null, then the calculation needs to be made
-    console.log(calculationDisplay);
-  };
-
-  const updateDisplay = () => {
-    setCalculationDisplay((prev) => {
-      if (prev !== null) {
-        return prev + " " + resultDisplay + " " + content;
-      } else {
-        return resultDisplay + " " + content;
-      }
-    });
   };
 
   return (
