@@ -1,6 +1,6 @@
 import "./App.css";
 import { CalcBody } from "./components";
-import AppProvider from "./context/displayContext";
+import AppProvider from "./store/context/displayContext";
 
 function App() {
   return (

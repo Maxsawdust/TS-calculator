@@ -5,7 +5,7 @@ import {
   CalculationContext,
   EqualsContext,
   ResultContext,
-} from "../../context/displayContext";
+} from "../../store/context/displayContext";
 
 export default function CalculatorButton({
   content,
@@ -90,10 +90,14 @@ export default function CalculatorButton({
   };
 
   const doCalculation = () => {
+    // if calculationDisplay is null then the user has pressed n =, and the result should be n
     if (calculationDisplay === null) {
       return resultDisplay;
     }
-    return "egg";
+    return "poo";
+
+    // if it's not null, then the calculation needs to be made
+    console.log(calculationDisplay);
   };
 
   const updateDisplay = () => {
@@ -115,7 +119,8 @@ export default function CalculatorButton({
         backgroundColor: color ? buttonColors[color] : "#9a9a9a",
         gridColumn: width && `span ${width}`,
       }}
-      onClick={handleClick}>
+      onClick={handleClick}
+    >
       {content}
     </button>
   );

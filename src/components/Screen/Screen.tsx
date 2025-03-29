@@ -3,7 +3,7 @@ import "./Screen.css";
 import {
   CalculationContext,
   ResultContext,
-} from "../../context/displayContext";
+} from "../../store/context/displayContext";
 
 export default function Screen() {
   const { resultDisplay } = useContext(ResultContext);
