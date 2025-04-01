@@ -77,12 +77,12 @@ export const displayReducer = (state: DisplayState, action: ActionType) => {
       console.log(calculationArr);
 
       // defining a "total" variable. arr[0] will always be a number
-      let total = calculationArr[0] as number;
+      let total = Number(calculationArr[0]);
 
       // iterate through the array by increments of 2 to access the operators (Strings)
       for (let i = 1; i < calculationArr.length; i += 2) {
         const operator = calculationArr[i];
-        const nextNumber = calculationArr[i + 1] as number;
+        const nextNumber = Number(calculationArr[i + 1]);
 
         switch (operator) {
           case "+":
@@ -101,9 +101,8 @@ export const displayReducer = (state: DisplayState, action: ActionType) => {
             total /= nextNumber;
             break;
         }
-
-        return { ...state, resultDisplay: total };
       }
+      return { ...state, resultDisplay: total };
       console.log(calculationArr);
       return state;
 

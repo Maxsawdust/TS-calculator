@@ -17,7 +17,7 @@ export default function CalculatorButton({
   };
 
   // accessing reducer from context
-  const { state, dispatch } = useContext(DisplayContext);
+  const { dispatch } = useContext(DisplayContext);
 
   const handleClick = () => {
     // handling behaviour for number buttons
@@ -63,7 +63,6 @@ export default function CalculatorButton({
   };
 
   return (
-    //
     <button
       className="CalculatorButton"
       // defining backgroundColor and gridColum properties based on props
@@ -71,8 +70,7 @@ export default function CalculatorButton({
         backgroundColor: color ? buttonColors[color] : "#9a9a9a",
         gridColumn: width && `span ${width}`,
       }}
-      onClick={handleClick}
-    >
+      onClick={handleClick}>
       {content}
     </button>
   );
